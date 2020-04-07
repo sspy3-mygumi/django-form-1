@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>상세 글</h2>
+    <h3>{{ article.pk }}번글 : {{ article.title }}</h3>
+    <p>글 내용: {{ article.content }}</p>
+    <p>글 생성 시각: {{ article.created_at }}</p>
+    <p>글 수정 시각: {{ article.updated_at }}</p>
+    <hr>
+    <form action="{% url 'articles:delete' article.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="글 삭제">
+    </form>
+    <a href="{% url 'articles:update' article.pk %}"><button>글 수정</button></a>
+    <a href="{% url 'articles:index' %}">BACK</a>
+{% endblock %}
